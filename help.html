@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center - EventPro</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+     <header>
+        <nav class="container">
+            <a href="index.html" class="logo">EventPro</a>
+            <ul>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="help.html">Help</a></li>
+                <li><a href="#" class="btn">Create an Event</a></li>
+            </ul>
+        </nav>
+    </header>
+ <section class="help-page">
+        <div class="container">
+            <div class="help-header">
+                <h1>How can we help?</h1>
+                <p>Find the answers to your questions, or contact us for further assistance.</p>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for a topic or question...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+             <!-- FAQ Section -->
+            <div class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="accordion-container">
+                    <!-- FAQ Item 1 -->
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            What are the steps to creating an event?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>To create a new event, log into your organizer dashboard and click "Create an Event". Fill out the event details, customize your event page, and start promoting!</p>
+                        </div>
+                    </div>
+                 <div class="accordion-item">
+                        <button class="accordion-header">
+                            How do I set up ticketing and registration?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>You can set up ticketing and registration by navigating to the "Ticketing" section in your event's management panel. You can create different ticket types, set prices, and manage sales from there.</p>
+                        </div>
+                    </div>
+                   <div class="accordion-item">
+                        <button class="accordion-header">
+                            Is there a free plan available?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Yes, we offer a free "Starter" plan that allows you to manage one active event. You can see the full details on our <a href="pricing.html">Pricing Page</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="contact-section">
+                <h2>Contact Our Support Team</h2>
+                <div class="contact-card">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                              <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+     <footer>
+        <div class="container">
+            <p>&copy; 2025 EventPro. All rights reserved.</p>
+        </div>
+    </footer>
+ <script>
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionContent = button.nextElementSibling;
+                button.classList.toggle('active');
+                if (button.classList.contains('active')) {
+                    accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
+                } else {
+                    accordionContent.style.maxHeight = 0;
+                }
+            });
+        });
+         </script>
+</body>
+</html>      

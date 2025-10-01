@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Event - EventPro</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+      <header>
+        <nav class="container">
+            <a href="index.html" class="logo">EventPro</a>
+            <ul>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="help.html">Help</a></li>
+                <li><a href="create-event.html" class="btn">Create an Event</a></li>
+            </ul>
+        </nav>
+    </header>
+     <section class="create-event-page">
+        <div class="container">
+            <div class="create-event-form-container">
+                <div class="form-progress">
+                    <div class="step active">1. Details</div>
+                    <div class="step">2. Schedule</div>
+                    <div class="step">3. Tickets</div>
+                    <div class="step">4. Review</div>
+                </div>
+                <form id="createEventForm">
+                    <!-- Step 1: Event Details -->
+                    <div class="form-step active" id="step1">
+                        <h2>Event Details</h2>
+                        <div class="form-group">
+                            <label for="event-title">Event Title</label>
+                            <input type="text" id="event-title" name="event-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-description">Event Description</label>
+                            <textarea id="event-description" name="event-description" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-category">Category</label>
+                            <select id="event-category" name="event-category">
+                                <option value="conference">Conference</option>
+                                <option value="webinar">Webinar</option>
+                                <option value="workshop">Workshop</option>
+                                <option value="concert">Concert</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next</button>
+                    </div>
+                     <div class="form-step" id="step2">
+                        <h2>Schedule</h2>
+                        <div class="form-group">
+                            <label for="event-location">Location</label>
+                            <input type="text" id="event-location" name="event-location" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-date">Date</label>
+                            <input type="date" id="event-date" name="event-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-time">Time</label>
+                            <input type="time" id="event-time" name="event-time" required>
+                        </div>
+                         <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Previous</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next</button>
+                    </div>
+
+                    <!-- Step 3: Tickets -->
+                    <div class="form-step" id="step3">
+                        <h2>Tickets</h2>
+                        <div class="form-group">
+                            <label for="ticket-type">Ticket Type</label>
+                            <input type="text" id="ticket-type" name="ticket-type" placeholder="e.g., General Admission, VIP" required>
+                        </div>
+                         <div class="form-group">
+                            <label for="ticket-price">Price</label>
+                            <input type="number" id="ticket-price" name="ticket-price" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ticket-quantity">Available Quantity</label>
+                            <input type="number" id="ticket-quantity" name="ticket-quantity" required>
+                        </div>
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Previous</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(4)">Next</button>
+                    </div>
+                     <div class="form-step" id="step4">
+                        <h2>Review and Publish</h2>
+                        <p>Review your event details before publishing. You can go back to any step to make changes.</p>
+                        <ul id="review-summary">
+                            <!-- Summary details will be populated here by JavaScript -->
+                        </ul>
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Previous</button>
+                        <button type="submit" class="btn btn-primary">Publish Event</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 EventPro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for multi-step form -->
+    <script>
+        function nextStep(step) {
+            document.getElementById(`step${step - 1}`).classList.remove('active');
+            document.getElementById(`step${step}`).classList.add('active');
+            document.querySelector(`.form-progress .step:nth-child(${step - 1})`).classList.remove('active');
+            document.querySelector(`.form-progress .step:nth-child(${step})`).classList.add('active');
+  if (step === 4) {
+                populateReviewSummary();
+            }
+        }
+
+        function prevStep(step) {
+            document.getElementById(`step${step + 1}`).classList.remove('active');
+            document.getElementById(`step${step}`).classList.add('active');
+            document.querySelector(`.form-progress .step:nth-child(${step + 1})`).classList.remove('active');
+            document.querySelector(`.form-progress .step:nth-child(${step})`).classList.add('active');
+        }
+         function populateReviewSummary() {
+            const summaryList = document.getElementById('review-summary');
+            summaryList.innerHTML = '';
+
+            const title = document.getElementById('event-title').value;
+            const description = document.getElementById('event-description').value;
+            const category = document.getElementById('event-category').value;
+            const location = document.getElementById('event-location').value;
+            const date = document.getElementById('event-date').value;
+            const time = document.getElementById('event-time').value;
+            const ticketType = document.getElementById('ticket-type').value;
+            const ticketPrice = document.getElementById('ticket-price').value;
+            const ticketQuantity = document.getElementById('ticket-quantity').value;
+            
+            summaryList.innerHTML += `<li><strong>Event Title:</strong> ${title}</li>`;
+            summaryList.innerHTML += `<li><strong>Description:</strong> ${description}</li>`;
+            summaryList.innerHTML += `<li><strong>Category:</strong> ${category}</li>`;
+            summaryList.innerHTML += `<li><strong>Location:</strong> ${location}</li>`;
+            summaryList.innerHTML += `<li><strong>Date:</strong> ${date}</li>`;
+            summaryList.innerHTML += `<li><strong>Time:</strong> ${time}</li>`;
+            summaryList.innerHTML += `<li><strong>Ticket Type:</strong> ${ticketType}</li>`;
+            summaryList.innerHTML += `<li><strong>Ticket Price:</strong> $${ticketPrice}</li>`;
+            summaryList.innerHTML += `<li><strong>Available Tickets:</strong> ${ticketQuantity}</li>`;
+        }
+          document.getElementById('createEventForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Event published successfully!');
+            // Here you would typically submit the form data to a server
+        });
+    </script>
+</body>
+</html>
+
